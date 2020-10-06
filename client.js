@@ -1,7 +1,7 @@
 console.log('Here are all the available people:', people);
 
 $(document).ready(loadUp);
-let pick = randomNumber(0,people.length-1);
+
 
 
 function loadUp() {
@@ -9,9 +9,7 @@ function loadUp() {
     
     // console.log(pick);
     divBuilder(people);
-
-    $('#prompt').empty();
-    $('#prompt').append('Here are the guesses: ',people[pick].name);
+    pickRandomPerson();
     $('#buildSite').on('click','.gamePiece',guessChecker);
     
 }
@@ -34,6 +32,13 @@ function divBuilder(objArray) {
     // });
 }
 
+function pickRandomPerson() {
+    let pick = randomNumber(0,people.length-1);
+    $('#prompt').empty();
+    $('#prompt').append('Here are the guesses: ',people[pick].name);
+    $('#prompt').data('pick',pick);
+}
+
 function randomNumber(min, max){
     return Math.floor(Math.random() * (1 + max - min) + min);
 }
@@ -41,11 +46,12 @@ function randomNumber(min, max){
 function guessChecker() {
     console.log('in guessChecker');
     console.log($(this).data('id'));
-    if (pick == $(this).data('id')) {
+    if ($('#prompt').data('pick') == $(this).data('id')) {
         window.alert("You got it!!!");
-        pick = randomNumber(0,people.length-1);
-        $('#prompt').empty();
-        $('#prompt').append('Here are the guesses: ',people[pick].name);
+        pickRandomPerson();
+        // pick = randomNumber(0,people.length-1);
+        // $('#prompt').empty();
+        // $('#prompt').append('Here are the guesses: ',people[pick].name);
     }
     else {
     window.alert("try again");
