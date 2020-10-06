@@ -11,6 +11,7 @@ function loadUp() {
     divBuilder(people);
 
     $('#prompt').empty();
+    $('#prompt').append('Here are the guesses: ',people[pick].name);
     $('#buildSite').on('click','.gamePiece',guessChecker);
     
 }
@@ -43,6 +44,8 @@ function guessChecker() {
     if (pick == $(this).data('id')) {
         window.alert("You got it!!!");
         pick = randomNumber(0,people.length-1);
+        $('#prompt').empty();
+        $('#prompt').append('Here are the guesses: ',people[pick].name);
     }
     else {
     window.alert("try again");
