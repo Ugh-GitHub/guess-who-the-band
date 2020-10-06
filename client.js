@@ -35,7 +35,7 @@ function divBuilder(objArray) {
 function pickRandomPerson() {
     let pick = randomNumber(0,people.length-1);
     $('#prompt').empty();
-    $('#prompt').append('Here are the guesses: ',people[pick].name);
+    $('#prompt').append('Pick who this is: ',people[pick].name);
     $('#prompt').data('pick',pick);
 }
 
@@ -45,7 +45,7 @@ function randomNumber(min, max){
 
 function guessChecker() {
     console.log('in guessChecker');
-    console.log($(this).data('id'));
+    console.log($(this).data(''));
     if ($('#prompt').data('pick') == $(this).data('id')) {
         window.alert("You got it!!!");
         pickRandomPerson();
